@@ -1,6 +1,7 @@
 from django.db import models
 
 class Proyecto(models.Model):
+    Clave=models.CharField(max_length=10, default='P')
     Titulo=models.CharField(max_length=50)
 
 class Estado(models.Model):

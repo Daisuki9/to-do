@@ -5,22 +5,19 @@ from .models import *
 
 def Inicio(request):
     proyectos=Proyecto.objects.all()
-    return render(request, "index.html", {"proyectos":proyectos})
+    return render(request, "index.html", {})
 
 def Proyectos(request):
     
-    #proyectos=Proyecto.objects.all()
-    #return render(request, "proyectos.html", {"proyecto":proyectos})
-    return render(request, "proyectos.html", {})
-
-def Estado(request):
+    proyectos=Proyecto.objects.all()
+    return render(request, "proyectos.html", {"proyectos":proyectos})
+    
+def Estados(request):
     
     return render(request, "estados.html", {})
 
-def CategoriaDeEstado(request):
-    
-    return render(request, "categoriadeestados.html", {})
+def Tareas(request, claveProyecto=''):
+    proyectos=Proyecto.objects.all()
+    tareas=Tarea.objects.all()
 
-def Tarea(request):
-    
-    return render(request, "tareas.html", {})
+    return render(request, "tareas.html", {"proyectos":proyectos, "tareas":tareas})

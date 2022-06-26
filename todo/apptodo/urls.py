@@ -3,9 +3,9 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('', Inicio),
-    path('proyectos/', Proyectos),
-    path('estados/', Estado),
-    path('categoriadeestados/', CategoriaDeEstado),
-    path('tareas/', Tarea),
+    path('', Inicio, name="inicio"),
+    path('proyectos/', Proyectos, name="proyectos"),
+    path('estados/', Estados, name="estados"),
+    #path('tareas/', Tareas, name="tareas"),
+    path('proyectos/<slug:claveProyecto>/', Tareas, name="proyectos"),
 ]
