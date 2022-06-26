@@ -11,14 +11,15 @@ def Inicio(request):
     proyectos=Proyecto.objects.all()
     return render(request, "index.html", {})
 
-def Proyectos(request):    
+def Proyectos(request):
     proyectos=Proyecto.objects.all()
     return render(request, "proyectos.html", {"proyectos":proyectos})
     
-def Estados(request):    
-    return render(request, "estados.html", {})
+def Estados(request):  
+    estados=Estado.objects.all()
+    return render(request, "estados.html", {"estados":estados})
 
 def Tareas(request, claveProyecto=''):
     proyectos=Proyecto.objects.all()
     tareas=Tarea.objects.all()
-    return render(request, "tareas.html", {"proyectos":proyectos, "tareas":tareas})
+    return render(request, "tareas.html", {"proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas})

@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>To-Do List App</title>
+        <title>To-Do App | {% block titulo %}{% endblock %}{% block subtitulo %}{% endblock %}</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -16,7 +16,7 @@
     <body>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            
+            {% block proyectos %}{% endblock %}
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
