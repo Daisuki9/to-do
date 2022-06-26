@@ -16,20 +16,12 @@
     <body>
         <div class="d-flex" id="wrapper">
             <!-- Sidebar-->
-            <div class="border-end bg-white" id="sidebar-wrapper">
-                <div class="sidebar-heading border-bottom bg-light">Proyectos</div>
-                <div class="list-group list-group-flush">
-                    {% for p in proyectos %}
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'proyectos' %}{{p.Clave}}">{{p.Titulo}}</a>
-                    {% endfor %}
-                </div>
-            </div>
+            
             <!-- Page content wrapper-->
             <div id="page-content-wrapper">
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <button class="btn btn-primary" id="sidebarToggle">Ocultar lista de proyectos</button>
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -40,20 +32,8 @@
                         </div>
                     </div>
                 </nav>
-                <!-- Page content-->
-                <div class="container-fluid">
-                    <div class="list-group">
-                    {% for tarea in tareas %}
-                        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-                            <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{tarea.Titulo}}</h5>
-                            <small>{{tarea.Estado.Titulo}}</small>
-                            </div>
-                            <small>{{tarea.Contenido}}</small>
-                        </a>
-                    {% endfor %}
-                    </div>
-                </div>
+                {% block contenido %}
+                {% endblock %}
             </div>
         </div>
         <!-- Bootstrap core JS-->
