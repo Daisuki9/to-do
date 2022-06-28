@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block contenido %}
-<div class="container-fluid">
+{% comment %} <div class="container-fluid">
     <div class="list-group">
     {% for tarea in tareas %}
         <a href="#" class="list-group-item list-group-item-action" aria-current="true">
@@ -26,9 +26,12 @@
             <small>{{tarea.Contenido}}</small>
         </a>
     {% endfor %}
-    <a href="{% url 'proyectos' %}{{claveProyectoSeleccionado}}/creartarea" class="list-group-item list-group-item-action" aria-current="true">
-        <small>--- Nueva Tarea ---</small>
-    </a>
     </div>
-</div>
+</div> {% endcomment %}
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p>
+    <p>Contenido: <textarea name="contenido" cols="40" rows="5" maxlength="8000"></textarea></p>
+    <input type="submit" value="Crear Tarea">
+</form>
 {% endblock %}

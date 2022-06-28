@@ -8,4 +8,5 @@ urlpatterns = [
     path('estados/', Estados, name="estados"),
     #path('tareas/', Tareas, name="tareas"),
     path('proyectos/<slug:claveProyecto>/', Tareas, name="proyectos"),
+    path('proyectos/<slug:claveProyecto>/creartarea', CrearTareas, name="crearTareas"),
 ]
