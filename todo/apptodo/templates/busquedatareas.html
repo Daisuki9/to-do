@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid">
+    <div class="list-group">
+    {% for tarea in tareas %}
+        <a href="#" class="list-group-item list-group-item-secondary" aria-current="true">
+            <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{tarea.Titulo}}</h5>
+            </div>
+        </a>
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

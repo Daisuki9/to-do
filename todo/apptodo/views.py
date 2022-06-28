@@ -1,11 +1,23 @@
+from http.client import HTTPResponse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.db.models import Q
 
 from .models import *
-from .forms import NuevaTarea, NuevoEstado
+from .forms import *
 
 def Inicio(request):
-    return render(request, "index.html", {})
+    if request.method == "POST":
+        datos = request.POST
+        if str(datos["Criterio"]) == "Tareas":
+            tareas=Tarea.objects.filter(Q(Titulo__icontains=datos["TextoBusqueda"]) | Q(Contenido__icontains=datos["TextoBusqueda"]))
+            return render(request, "busquedatareas.html", {"tareas":tareas})
+        elif str(datos["Criterio"]) == "Proyectos":
+            proyectos=Proyecto.objects.filter(Titulo__contains=datos["TextoBusqueda"])
+            return render(request, "busquedaproyectos.html", {"proyectos":proyectos})
+
+    formularioVacio=BuscarProyectosYTareas()
+    return render(request, "index.html", {"form":formularioVacio})
 
 def Proyectos(request):
     proyectos=Proyecto.objects.all()

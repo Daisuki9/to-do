@@ -4,5 +4,11 @@
 {% block titulo %}Inicio{% endblock %}
 
 {% block contenido %}
-<h1>Contenido</h1>
+<form action="" method="post">
+    {% csrf_token %}
+    <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p>
+    <p>Contenido: <textarea name="contenido" cols="40" rows="5" maxlength="8000"></textarea></p> -->
+    {{ form.as_p }}
+    <input type="submit" value="Buscar">
+</form>
 {% endblock %}
