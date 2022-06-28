@@ -9,4 +9,5 @@ urlpatterns = [
     #path('tareas/', Tareas, name="tareas"),
     path('proyectos/<slug:claveProyecto>/', Tareas, name="proyectos"),
     path('proyectos/<slug:claveProyecto>/creartarea', CrearTareas, name="crearTareas"),
+    path('estados/crearestados/', CrearEstados, name="crearEstados"),
 ]

@@ -15,23 +15,11 @@
 {% endblock %}
 
 {% block contenido %}
-{% comment %} <div class="container-fluid">
-    <div class="list-group">
-    {% for tarea in tareas %}
-        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{tarea.Titulo}}</h5>
-            <small>{{tarea.Estado.Titulo}}</small>
-            </div>
-            <small>{{tarea.Contenido}}</small>
-        </a>
-    {% endfor %}
-    </div>
-</div> {% endcomment %}
 <form action="" method="post">
     {% csrf_token %}
-    <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p>
-    <p>Contenido: <textarea name="contenido" cols="40" rows="5" maxlength="8000"></textarea></p>
+    <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p>
+    <p>Contenido: <textarea name="contenido" cols="40" rows="5" maxlength="8000"></textarea></p> -->
+    {{ form.as_p }}
     <input type="submit" value="Crear Tarea">
 </form>
 {% endblock %}

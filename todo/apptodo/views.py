@@ -1,10 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from .models import *
+from .forms import NuevaTarea, NuevoEstado
 
 def Inicio(request):
-    proyectos=Proyecto.objects.all()
     return render(request, "index.html", {})
 
 def Proyectos(request):
@@ -12,8 +12,18 @@ def Proyectos(request):
     return render(request, "proyectos.html", {"proyectos":proyectos})
 
 def Estados(request):  
-    estados=Estado.objects.all()
+    estados=Estado.objects.all()    
     return render(request, "estados.html", {"estados":estados})
+
+def CrearEstados(request):
+    if request.method == "POST":
+        datos = request.POST
+        estado=Estado(Titulo=datos["Titulo"], PorDefecto=datos.get('PorDefecto', False))
+        estado.save()
+        return redirect("estados")
+        
+    formularioVacio=NuevoEstado()
+    return render(request, "crearestado.html", {"form":formularioVacio})
 
 def Tareas(request, claveProyecto=''):
     proyectos=Proyecto.objects.all()
@@ -25,13 +35,14 @@ def CrearTareas(request, claveProyecto=''):
         datos = request.POST
         estadoPorDefecto=Estado.objects.filter(PorDefecto=1)[0]
         proyectoSeleccionado=Proyecto.objects.filter(Clave=claveProyecto)[0]
-        tarea = Tarea(Titulo=datos["titulo"], Contenido=datos["contenido"], Completado=0, Estado=estadoPorDefecto, Proyecto=proyectoSeleccionado)
+        tarea = Tarea(Titulo=datos["Titulo"], Contenido=datos["Contenido"], Completado=0, Estado=estadoPorDefecto, Proyecto=proyectoSeleccionado)
         tarea.save()
         return Tareas(request, claveProyecto)
 
+    formularioVacio = NuevaTarea()
     proyectos=Proyecto.objects.all()
     tareas=Tarea.objects.filter(Proyecto__Clave=claveProyecto)
-    return render(request, "creartareas.html", {"proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas})
+    return render(request, "creartareas.html", {"form":formularioVacio, "proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas})
 
 
 
