@@ -26,7 +26,8 @@ def Proyectos(request):
 def CrearProyectos(request):
     if request.method == "POST":
         datos = request.POST
-        proyecto=Proyecto(Titulo=datos["Titulo"], Clave=datos["Clave"])
+        clave=str(datos["Clave"]).replace(" ", "")
+        proyecto=Proyecto(Titulo=datos["Titulo"], Clave=clave)
         proyecto.save()
         return redirect("proyectos")
         
