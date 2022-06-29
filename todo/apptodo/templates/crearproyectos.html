@@ -10,7 +10,16 @@
         {% for p in proyectos %}
         <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'proyectos' %}{{p.Clave}}">{{p.Titulo}}</a>
         {% endfor %}
-        <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'crearProyectos' %}">--- Nuevo proyecto ---</a>
     </div>
 </div>
+{% endblock %}
+
+{% block contenido %}
+<form action="" method="post">
+    {% csrf_token %}
+    <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p>
+    <p>Contenido: <textarea name="contenido" cols="40" rows="5" maxlength="8000"></textarea></p> -->
+    {{ form.as_p }}
+    <input type="submit" value="Agregar proyecto">
+</form>
 {% endblock %}

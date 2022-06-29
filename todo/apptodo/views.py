@@ -23,6 +23,16 @@ def Proyectos(request):
     proyectos=Proyecto.objects.all()
     return render(request, "proyectos.html", {"proyectos":proyectos})
 
+def CrearProyectos(request):
+    if request.method == "POST":
+        datos = request.POST
+        proyecto=Proyecto(Titulo=datos["Titulo"], Clave=datos["Clave"])
+        proyecto.save()
+        return redirect("proyectos")
+        
+    formularioVacio=NuevoProyecto()
+    return render(request, "crearproyectos.html", {"form":formularioVacio})
+
 def Estados(request):  
     estados=Estado.objects.all()    
     return render(request, "estados.html", {"estados":estados})
@@ -55,9 +65,3 @@ def CrearTareas(request, claveProyecto=''):
     proyectos=Proyecto.objects.all()
     tareas=Tarea.objects.filter(Proyecto__Clave=claveProyecto)
     return render(request, "creartareas.html", {"form":formularioVacio, "proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas})
-
-
-
-
-
-##### LLEGUÉ HASTA 00:42:00 DE LA CLASE 21 #####

@@ -11,8 +11,8 @@ class NuevoEstado(forms.Form):
     PorDefecto=forms.BooleanField(label="Es estado por defecto", required=False, initial=False)
 
 class NuevoProyecto(forms.Form):
-    Clave=forms.CharField(max_length=10)
-    Titulo=forms.CharField(max_length=50)
+    Clave=forms.CharField(max_length=10, required=True)
+    Titulo=forms.CharField(max_length=50, required=True, label="Título")
 
 class BuscarProyectosYTareas(forms.Form):
     tipoBusqueda = ['tareas','proyectos']
