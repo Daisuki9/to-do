@@ -63,10 +63,6 @@ def Configuraciones_estado_por_defecto(request, idEstado=''):
     estado.save()
     return redirect("configuraciones")
 
-
-
-
-
 def CrearEstados(request):
     if request.method == "POST":
         datos = request.POST
@@ -77,16 +73,11 @@ def CrearEstados(request):
     formularioVacio=NuevoEstado()
     return render(request, "crearestado.html", {"form":formularioVacio})
 
-# def CrearTareas(request, claveProyecto=''):
-#     if request.method == "POST":
-#         datos = request.POST
-#         estadoPorDefecto=Estado.objects.filter(PorDefecto=1)[0]
-#         proyectoSeleccionado=Proyecto.objects.filter(Clave=claveProyecto)[0]
-#         tarea = Tarea(Titulo=datos["Titulo"], Contenido=datos["Contenido"], Completado=0, Estado=estadoPorDefecto, Proyecto=proyectoSeleccionado)
-#         tarea.save()
-#         return Proyectos_ver_detalle(request, claveProyecto)
+def Tarea_quitar(request, claveProyecto, idTarea):
+    tarea = Tarea.objects.get(id=idTarea)
+    tarea.delete()
+    return redirect("proyectos", claveProyecto)
 
-#     formularioVacio = NuevaTarea()
-#     proyectos=Proyecto.objects.all()
-#     tareas=Tarea.objects.filter(Proyecto__Clave=claveProyecto)
-#     return render(request, "creartareas.html", {"form":formularioVacio, "proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas})
+def Tarea_editar(request, claveProyecto, idTarea):
+    
+    return redirect("proyectos", claveProyecto)

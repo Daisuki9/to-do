@@ -30,16 +30,20 @@
                                 {% else %}
                                 <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ forloop.counter }}">
                                 {% endif %}
-                                     <div class="panel-body">
+                                    <div class="panel-body">
                                         <div class="row">
-                                              <div class="col-md-6">
-                                                  <p>{{tarea.Contenido}}</p>
-                                              </div>
-                                              <div class="col-md-6">
+                                            <div class="col-md-6">
+                                                <p>{{tarea.Contenido}}</p>
+                                            </div>
+                                            <div class="col-md-6">
                                                 <small>Estado: {{tarea.Estado.Titulo}}</small>
-                                              </div>
-                                          </div>
-                                     </div>
+                                            </div>
+                                        </div>
+                                        <a class="btn btn-primary btn-sm" href="{% url 'EditarTarea' claveProyectoSeleccionado tarea.id %}">Editar</a>
+                                        <a class="btn btn-danger btn-sm" href="{% url 'QuitarTarea' claveProyectoSeleccionado tarea.id %}">Quitar</a>
+                                        <!-- <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Quitar</button> -->
+                                    </div>
                                 </div>
                             </div>
                             {% endfor %}
