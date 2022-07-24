@@ -50,26 +50,7 @@ def Buscar(request):
     formularioVacio=BuscarProyectosYTareas()
     return render(request, "buscar.html", {"form":formularioVacio})
 
-<<<<<<< HEAD
-def Proyectos(request):
-    proyectos=Proyecto.objects.all()
-    return render(request, "proyectos.html", {"proyectos":proyectos})
-
-def CrearProyectos(request):
-    if request.method == "POST":
-        datos = request.POST
-        clave=str(datos["Clave"]).replace(" ", "")
-        proyecto=Proyecto(Titulo=datos["Titulo"], Clave=clave)
-        proyecto.save()
-        return redirect("proyectos")
-        
-    formularioVacio=NuevoProyecto()
-    return render(request, "crearproyectos.html", {"form":formularioVacio})
-
-def Estados(request):  
-=======
 def Configuraciones(request):  
->>>>>>> 2f432ed (Todo lindo con estilos)
     estados=Estado.objects.all()    
     return render(request, "configuraciones.html", {"estados":estados})
 
@@ -105,23 +86,7 @@ def CrearEstados(request):
 #         tarea.save()
 #         return Proyectos_ver_detalle(request, claveProyecto)
 
-<<<<<<< HEAD
-def CrearTareas(request, claveProyecto=''):
-    if request.method == "POST":
-        datos = request.POST
-        estadoPorDefecto=Estado.objects.filter(PorDefecto=1)[0]
-        proyectoSeleccionado=Proyecto.objects.filter(Clave=claveProyecto)[0]
-        tarea = Tarea(Titulo=datos["Titulo"], Contenido=datos["Contenido"], Completado=0, Estado=estadoPorDefecto, Proyecto=proyectoSeleccionado)
-        tarea.save()
-        return Tareas(request, claveProyecto)
-
-    formularioVacio = NuevaTarea()
-    proyectos=Proyecto.objects.all()
-    tareas=Tarea.objects.filter(Proyecto__Clave=claveProyecto)
-    return render(request, "creartareas.html", {"form":formularioVacio, "proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas})
-=======
 #     formularioVacio = NuevaTarea()
 #     proyectos=Proyecto.objects.all()
 #     tareas=Tarea.objects.filter(Proyecto__Clave=claveProyecto)
 #     return render(request, "creartareas.html", {"form":formularioVacio, "proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas})
->>>>>>> 2f432ed (Todo lindo con estilos)

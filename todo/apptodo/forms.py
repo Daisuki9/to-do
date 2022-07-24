@@ -11,14 +11,9 @@ class NuevoEstado(forms.Form):
     PorDefecto=forms.BooleanField(label="Es estado por defecto", required=False, initial=False)
 
 class NuevoProyecto(forms.Form):
-<<<<<<< HEAD
-    Clave=forms.CharField(max_length=10, required=True)
-    Titulo=forms.CharField(max_length=50, required=True, label="Título")
-=======
     Clave=forms.CharField(max_length=10, label=False, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Clave'}))
     Titulo=forms.CharField(max_length=50, label=False, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Titulo'}))
     Descripcion=forms.CharField(max_length=8000, label=False, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción'}))
->>>>>>> 2f432ed (Todo lindo con estilos)
 
 class BuscarProyectosYTareas(forms.Form):
     tipoBusqueda = ['tareas','proyectos']
