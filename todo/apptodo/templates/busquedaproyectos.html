@@ -1,18 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block titulo %}Inicio{% endblock %}
+{% block titulo %}Buscar{% endblock %}
+
+{% block resaltadoBuscar %}class="colorlib-active"{% endblock %}
 
 {% block contenido %}
-<div class="container-fluid">
-    <div class="list-group">
-    {% for proyecto in proyectos %}
-        <a href="#" class="list-group-item list-group-item-secondary" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{proyecto.Titulo}}</h5>
+<div id="colorlib-main">
+    <div class="colorlib-services">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Resultado</h2>
+                </div>
             </div>
-        </a>
-    {% endfor %}
+            <div class="col-md-12">
+                {% for p in proyectos %}
+                <div class="colorlib-feature animate-box" data-animate-effect="fadeInRight">
+                    <div class="colorlib-icon">
+                        <i class="flaticon-engineering"></i>
+                    </div>
+                    <div class="colorlib-text">
+                        <h3><a href="{% url 'proyectos' %}{{p.Clave}}">{{p.Titulo}} ({{p.Clave}})</a></h3>
+                        <p>Acá debería ir la descripción del proyecto cuando le agregue el campo en la base. </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

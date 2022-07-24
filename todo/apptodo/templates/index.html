@@ -4,11 +4,35 @@
 {% block titulo %}Inicio{% endblock %}
 
 {% block contenido %}
-<form action="" method="post">
-    {% csrf_token %}
-    <!-- <p>Titulo: <input type="text" name="titulo" id="" maxlength="50"></p>
-    <p>Contenido: <textarea name="contenido" cols="40" rows="5" maxlength="8000"></textarea></p> -->
-    {{ form.as_p }}
-    <input type="submit" value="Buscar">
-</form>
+<div id="colorlib-main">
+
+    <div class="colorlib-about">
+        <div class="colorlib-narrow-content">
+            <div class="row row-bottom-padded-md">
+                <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+                    <div class="row padding">
+                        <div class="col-md-4 no-gutters animate-box" data-animate-effect="fadeInLeft">
+                            <a href="#" class="steps active">
+                                <p class="icon"><span><i class="icon-check"></i></span></p>
+                                <h3>We are <br>pasionate</h3>
+                            </a>
+                        </div>
+                        <div class="col-md-4 no-gutters animate-box" data-animate-effect="fadeInLeft">
+                            <a href="#" class="steps">
+                                <p class="icon"><span><i class="icon-check"></i></span></p>
+                                <h3>Honest <br>Dependable</h3>
+                            </a>
+                        </div>
+                        <div class="col-md-4 no-gutters animate-box" data-animate-effect="fadeInLeft">
+                            <a href="#" class="steps">
+                                <p class="icon"><span><i class="icon-check"></i></span></p>
+                                <h3>Always <br>Improving</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

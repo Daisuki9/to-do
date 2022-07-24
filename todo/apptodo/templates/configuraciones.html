@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Configuraciones{% endblock %}
+
+{% block resaltadoConfiguraciones %}class="colorlib-active"{% endblock %}
+
+{% block contenido %}
+<div id="colorlib-main">
+
+    <div class="colorlib-about">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Configuraciones</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 animate-box" data-animate-effect="fadeInRight">
+                    <h2 class="colorlib-feature">Estados</h2>
+                </div>
+                <div class="col-md-8 animate-box" data-animate-effect="fadeInRight">
+                    <div class="fancy-collapse-panel">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            {% for estado in estados %}
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading{{ forloop.counter }}">
+                                    <h4 class="panel-title">
+                                        {% if forloop.counter == 1 %}
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter }}" aria-expanded="true" aria-controls="collapse{{ forloop.counter }}">{{estado.Titulo}}</a>
+                                        {% else %}
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">{{estado.Titulo}}</a>
+                                        {% endif %}
+                                    </h4>
+                                </div>
+                                {% if forloop.counter == 1 %}
+                                <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading{{ forloop.counter }}">
+                                {% else %}
+                                <div id="collapse{{ forloop.counter }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ forloop.counter }}">
+                                {% endif %}
+                                     <div class="panel-body">
+                                        <div class="row">
+                                              <div class="col-md-6">
+                                                  <p>Estado por defecto: {% if estado.PorDefecto == 1 %} Si {% else %} No {% endif %}</p>
+                                              </div>
+                                              <div class="col-md-6">
+                                                <small>{% if estado.PorDefecto == 0 %} <a href="{% url 'estadoPorDefecto' estado.id %}" class="btn btn-primary btn-send-message" aria-current="true">
+                                                    <small>Definir como estado por defecto</small>
+                                                </a> {% endif %}</small>
+                                              </div>
+                                          </div>
+                                     </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- <a href="{% url 'crearEstados' %}" class="list-group-item list-group-item-light" aria-current="true">
+                                <small>--- Nuevo Estado ---</small>
+                            </a> -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="heading0">
+                                    <h4 class="panel-title">
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="true" aria-controls="collapse0">Agregar estado</a>
+                                    </h4>
+                                </div>
+                                <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                                     <div class="panel-body">
+                                        <div class="row">
+                                              <div class="col-md-12">
+                                                <form action="" method="post">
+                                                    {% csrf_token %}
+                                                    {{ formEstados.as_p }}
+                                                    <input type="submit" class="btn btn-primary btn-send-message" value="Agregar">
+                                                </form>
+                                              </div>
+                                          </div>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

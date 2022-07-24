@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Buscar{% endblock %}
+
+{% block resaltadoBuscar %}class="colorlib-active"{% endblock %}
+
+{% block contenido %}
+
+<div id="colorlib-main">
+    <div class="colorlib-contact">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Buscar</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-md-push-1">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInLeft">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <!-- <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Ingrese un texto aquí">
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" id="Proyectos" name="criterio" value="Proyectos" checked>
+                                    <label for="Proyectos">  Proyectos  </label>
+                                    <input type="radio" id="Tareas" name="criterio" value="Tareas">
+                                    <label for="Tareas">  Tareas  </label>
+                                </div> -->
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-send-message" value="Buscar">
+                                </div> 
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

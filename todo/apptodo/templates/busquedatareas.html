@@ -1,18 +1,33 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block titulo %}Inicio{% endblock %}
+{% block titulo %}Buscar{% endblock %}
+
+{% block resaltadoBuscar %}class="colorlib-active"{% endblock %}
 
 {% block contenido %}
-<div class="container-fluid">
-    <div class="list-group">
-    {% for tarea in tareas %}
-        <a href="#" class="list-group-item list-group-item-secondary" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{tarea.Titulo}}</h5>
+<div id="colorlib-main">
+    <div class="colorlib-services">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Resultado</h2>
+                </div>
             </div>
-        </a>
-    {% endfor %}
+            <div class="col-md-12">
+                {% for t in tareas %}
+                <div class="colorlib-feature animate-box" data-animate-effect="fadeInRight">
+                    <div class="colorlib-icon">
+                        <i class="flaticon-engineering"></i>
+                    </div>
+                    <div class="colorlib-text">
+                        <h3><a href="{% url 'proyectos' %}{{t.Proyecto.Clave}}">{{t.Titulo}} ({{t.Proyecto.Titulo}})</a></h3>
+                        <p>{{t.Contenido}} </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

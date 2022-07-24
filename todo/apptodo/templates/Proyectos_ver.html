@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Proyectos{% endblock %}
+
+{% block resaltadoProyectos %}class="colorlib-active"{% endblock %}
+
+{% block contenido %}
+<div id="colorlib-main">
+    <div class="colorlib-services">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Proyectos</h2>
+                </div>
+            </div>
+            <div class="col-md-12">
+                {% for p in proyectos %}
+                <div class="colorlib-feature animate-box" data-animate-effect="fadeInRight">
+                    <div class="colorlib-icon">
+                        <i class="flaticon-engineering"></i>
+                    </div>
+                    <div class="colorlib-text">
+                        <h3><a href="{% url 'proyectos' p.Clave %}">{{p.Titulo}} ({{p.Clave}})</a></h3>
+                        <p>Acá debería ir la descripción del proyecto cuando le agregue el campo en la base. </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-6 animate-box" data-animate-effect="fadeInTop">
+                <p><a href="{% url 'proyectoNuevo' %}" class="btn btn-primary btn-send-message">Nuevo</a></p>
+            </div>   
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
