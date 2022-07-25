@@ -9,13 +9,18 @@ class TareaForm(forms.Form):
     Contenido=forms.CharField(max_length=8000, label=False, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contenido'}))
 
 class NuevoEstado(forms.Form):
+    categoriaEstado = ['Pendiente','En Curso', 'Listo']
+    OPCION_1 = 'Pendiente'
+    OPCION_2 = 'En Curso'
+    OPCION_3 = 'Listo'
+    CATEGORIA = (
+        (OPCION_1, u"Pendiente"),
+        (OPCION_2, u"En Curso"),
+        (OPCION_3, u"Listo")
+    )
     Titulo=forms.CharField(max_length=30, label="Estado")
+    Categoria=forms.ChoiceField(choices=CATEGORIA, label=False, widget=forms.RadioSelect(attrs={'class': 'form-check'}))
     PorDefecto=forms.BooleanField(label="Es estado por defecto", required=False, initial=False)
-
-# class NuevoProyecto(forms.Form):
-#     Clave=forms.CharField(max_length=10, label=False, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Clave'}))
-#     Titulo=forms.CharField(max_length=50, label=False, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Titulo'}))
-#     Descripcion=forms.CharField(max_length=8000, label=False, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción'}))
 
 class BuscarProyectosYTareas(forms.Form):
     tipoBusqueda = ['tareas','proyectos']
@@ -28,7 +33,7 @@ class BuscarProyectosYTareas(forms.Form):
     TextoBusqueda=forms.CharField(max_length=50, label=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese un texto aquí'}))
     Criterio = forms.ChoiceField(choices=CRITERIO, label=False, widget=forms.RadioSelect(attrs={'class': 'form-check'}))
 
-class UserRegisterForm(UserCreationForm):
+class UsuarioNuevoForm(UserCreationForm):
     
     username = forms.CharField(label="Usuario", required=True)
     email = forms.EmailField(label="Email", required=True)
@@ -39,14 +44,14 @@ class UserRegisterForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
-class UserEditForm(UserCreationForm):
+class UsuarioEditarForm(UserCreationForm):
 
     email = forms.EmailField(label="Email")
-    password1 = forms.CharField(label="Contraseña", widget=forms.PasswordInput, required=False) # la contraseña no se vea
+    password1 = forms.CharField(label="Contraseña nueva", widget=forms.PasswordInput, required=False)
     password2 = forms.CharField(label="Confirmar contraseña", widget=forms.PasswordInput, required=False)
 
     class Meta:
         model = User
         fields = ['email', 'password1', 'password2']
-
+        
         help_texts = {k:"" for k in fields}

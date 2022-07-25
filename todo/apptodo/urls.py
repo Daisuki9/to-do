@@ -7,6 +7,7 @@ urlpatterns = [
     path('login', login_request, name="login"),
     path('register', register_request, name="register"),
     path('logout', logout_request, name="logout"),
+    path('usuario/editar', PerfilUpdate, name="usuario_update"),
     
     path('buscar/', Buscar, name="buscar"),
     
@@ -26,7 +27,6 @@ urlpatterns = [
 
 
     path('configuraciones/', Configuraciones, name="configuraciones"),
-    path('configuraciones/estados/estadopordefecto/<idEstado>/', Configuraciones_estado_por_defecto, name="estadoPorDefecto"),
-    
-    path('estados/crearestados/', CrearEstados, name="crearEstados"),
+    path('configuraciones/estado/estadopordefecto/<idEstado>/', Configuraciones_estado_por_defecto, name="estadoPorDefecto"),
+    path('configuraciones/estado/nuevo/', EstadoCreate, name="estado_create"),
 ]

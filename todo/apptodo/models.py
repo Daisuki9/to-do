@@ -4,11 +4,19 @@ class Proyecto(models.Model):
     Titulo=models.CharField(max_length=50)
     Descripcion=models.TextField(max_length=8000, default="")
     def __str__(self) -> str:
-        return f"{self.Titulo} ({self.Clave})"
+        return f"{self.Titulo}"
+
+class CategoriaEstado(models.Model):
+    Nombre=models.CharField(max_length=30)
+    
+    def __str__(self) -> str:
+        return self.Nombre
 
 class Estado(models.Model):
     Titulo=models.CharField(max_length=30)
     PorDefecto=models.BooleanField(default=0)
+    Categoria=models.ForeignKey(CategoriaEstado, on_delete=models.CASCADE, default=1)
+
     def __str__(self) -> str:
         return self.Titulo
 

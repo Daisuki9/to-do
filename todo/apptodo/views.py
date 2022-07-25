@@ -39,7 +39,7 @@ def login_request(request):
 
 def register_request(request):
     if request.method == "POST":
-        form=UserRegisterForm(request.POST)
+        form=UsuarioNuevoForm(request.POST)
         if form.is_valid():
             username=form.cleaned_data.get('username')
             password=form.cleaned_data.get('password1')
@@ -48,16 +48,27 @@ def register_request(request):
             if user is not None:
                 login(request, user)
                 return redirect("inicio")
-            else:
-                return redirect("login")
             return redirect("login")
         return render(request, "apptodo/register.html", {"form":form})
-    form=UserRegisterForm()
+    form=UsuarioNuevoForm()
     return render(request, "apptodo/register.html", {"form":form})
 
 def logout_request(request):
     logout(request)
     return redirect("inicio")
+
+@login_required
+def PerfilUpdate(request):
+    usuario = request.user
+    if request.method == "POST":
+        form=UsuarioEditarForm(request.POST)
+        if form.is_valid():
+            info=form.cleaned_data
+            usuario.email = info["email"]
+            usuario.save()
+            return redirect('inicio')
+    form=UsuarioEditarForm(initial={"username":usuario.username, "email":usuario.email})
+    return render(request, "apptodo/perfil_update.html", {"form":form})
 
 #endregion
 
@@ -155,8 +166,9 @@ def Buscar(request):
 
 @staff_member_required
 def Configuraciones(request):  
-    estados=Estado.objects.all()    
-    return render(request, "configuraciones.html", {"estados":estados})
+    estados=Estado.objects.all()
+    formularioVacio=NuevoEstado()
+    return render(request, "configuraciones.html", {"estados":estados, "form":formularioVacio})
 
 @staff_member_required
 def Configuraciones_estado_por_defecto(request, idEstado=''):
@@ -169,12 +181,17 @@ def Configuraciones_estado_por_defecto(request, idEstado=''):
     return redirect("configuraciones")
 
 @staff_member_required
-def CrearEstados(request):
+def EstadoCreate(request):
     if request.method == "POST":
         datos = request.POST
-        estado=Estado(Titulo=datos["Titulo"], PorDefecto=datos.get('PorDefecto', False))
+        if str(datos["Categoria"]) == "Pendiente":
+            categoria=CategoriaEstado.objects.get(Nombre="Pendiente")
+        elif str(datos["Categoria"]) == "En Curso":
+            categoria=CategoriaEstado.objects.get(Nombre="En Curso")
+        elif str(datos["Categoria"]) == "Listo":
+            categoria=CategoriaEstado.objects.get(Nombre="Listo")
+        estado=Estado(Titulo=datos["Titulo"], PorDefecto=datos.get('PorDefecto', False), Categoria=categoria)
         estado.save()
-        return redirect("estados")
+        return redirect("configuraciones")
         
-    formularioVacio=NuevoEstado()
-    return render(request, "crearestado.html", {"form":formularioVacio})
+    return redirect("configuraciones")

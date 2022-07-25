@@ -53,9 +53,6 @@
                                 </div>
                             </div>
                             {% endfor %}
-                            <!-- <a href="{% url 'crearEstados' %}" class="list-group-item list-group-item-light" aria-current="true">
-                                <small>--- Nuevo Estado ---</small>
-                            </a> -->
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="heading0">
                                     <h4 class="panel-title">
@@ -66,9 +63,9 @@
                                      <div class="panel-body">
                                         <div class="row">
                                               <div class="col-md-12">
-                                                <form action="" method="post">
+                                                <form action="{% url 'estado_create' %}" method="post">
                                                     {% csrf_token %}
-                                                    {{ formEstados.as_p }}
+                                                    {{ form.as_p }}
                                                     <input type="submit" class="btn btn-primary btn-send-message" value="Agregar">
                                                 </form>
                                               </div>

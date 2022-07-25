@@ -65,7 +65,13 @@
 					{% if user.is_staff %}
 					<li {% block resaltadoConfiguraciones %}{% endblock %}><a href="{% url 'configuraciones' %}">Configuraciones</a></li>
 					{% endif %}
-					<li><a href="{% url 'logout' %}">Cerrar Sesión[{{user.username}}]</a></li>
+					<li><br><br><br><br><br><br><br>
+						<div class="badge bg-primary text-wrap">
+							Usuario: {{user.username}}
+						</div>
+						<br>
+						<a href="{% url 'usuario_update' %}">Editar</a> | <a href="{% url 'logout' %}">Salir</a>
+					</li>
 					{% endif %}
 				</ul>
 			</nav>
