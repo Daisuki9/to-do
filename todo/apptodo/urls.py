@@ -1,10 +1,12 @@
 
-from django.urls import path, re_path
+from django.urls import path
 from .views import *
 
 urlpatterns = [
     path('', Inicio, name="inicio"),
     path('login', login_request, name="login"),
+    path('register', register_request, name="register"),
+    path('logout', logout_request, name="logout"),
     
     path('buscar/', Buscar, name="buscar"),
     

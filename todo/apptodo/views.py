@@ -1,4 +1,3 @@
-from ssl import _PasswordType
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
@@ -6,7 +5,7 @@ from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from .forms import *
+
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
@@ -17,6 +16,8 @@ from .forms import *
 
 def Inicio(request):
     return render(request, "index.html", {})
+
+#region Sesión
 
 def login_request(request):
     if request.method == "POST":
@@ -34,6 +35,30 @@ def login_request(request):
             return redirect("login")
     form=AuthenticationForm()
     return render(request, "apptodo/login.html", {"form":form})
+
+def register_request(request):
+    if request.method == "POST":
+        form=UserRegisterForm(request.POST)
+        if form.is_valid():
+            username=form.cleaned_data.get('username')
+            password=form.cleaned_data.get('password1')
+            form.save()
+            user=authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("inicio")
+            else:
+                return redirect("login")
+            return redirect("login")
+        return render(request, "apptodo/register.html", {"form":form})
+    form=UserRegisterForm()
+    return render(request, "apptodo/register.html", {"form":form})
+
+def logout_request(request):
+    logout(request)
+    return redirect("inicio")
+
+#endregion
 
 #region Proyectos
 
@@ -77,7 +102,7 @@ def TareaCreate(request, idProyecto):
         datos = request.POST
         estadoPorDefecto=Estado.objects.filter(PorDefecto=1)[0]
         proyectoSeleccionado=Proyecto.objects.filter(id=idProyecto)[0]
-        tarea = Tarea(Titulo=datos["Titulo"], Contenido=datos["Contenido"], Completado=0, Estado=estadoPorDefecto, Proyecto=proyectoSeleccionado)
+        tarea = Tarea(Titulo=datos["Titulo"], Contenido=datos["Contenido"], Estado=estadoPorDefecto, Proyecto=proyectoSeleccionado)
         tarea.save()
     return redirect("proyecto_detail", idProyecto)
 

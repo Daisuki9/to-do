@@ -10,7 +10,7 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<meta name="author" content="" />
-
+	{% block redirect %}{% endblock %}
   <!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -58,15 +58,23 @@
 			<h1 id="colorlib-logo"><a href="{% url 'inicio' %}">To-Do App</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
+					{% if user.is_authenticated %}
 					<li {% block resaltadoInicio %}{% endblock %}><a href="{% url 'inicio' %}">Inicio</a></li>
 					<li {% block resaltadoProyectos %}{% endblock %}><a href="{% url 'proyecto_list' %}">Proyectos</a></li>
 					<li {% block resaltadoBuscar %}{% endblock %}><a href="{% url 'buscar' %}">Buscar</a></li>
 					<li {% block resaltadoConfiguraciones %}{% endblock %}><a href="{% url 'configuraciones' %}">Configuraciones</a></li>
+					<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+					{% endif %}
 				</ul>
 			</nav>
 		</aside>
+		{% if user.is_authenticated %}
 		{% block contenido %}
 		{% endblock %}
+		{% else %}
+		{% block login %}
+		{% endblock %}
+		{% endif %}
 	</div>
 
 	<!-- jQuery -->

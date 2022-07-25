@@ -3,7 +3,11 @@
 
 {% block titulo %}Inicio{% endblock %}
 {% block resaltadoInicio %}class="colorlib-active"{% endblock %}
-
+{% block redirect %}
+{% if user.is_authenticated == False %}
+<meta http-equiv="refresh" content="0; url = {% url 'login' %}" />
+{% endif %}
+{% endblock %}
 {% block contenido %}
 <div id="colorlib-main">
 
