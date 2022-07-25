@@ -21,8 +21,8 @@
                         <i class="flaticon-engineering"></i>
                     </div>
                     <div class="colorlib-text">
-                        <h3><a href="{% url 'proyectos' %}detalles/{{p.Clave}}">{{p.Titulo}} ({{p.Clave}})</a></h3>
-                        <p>Acá debería ir la descripción del proyecto cuando le agregue el campo en la base. </p>
+                        <h3><a href="{% url 'proyecto_detail' p.id %}">{{p.Titulo}}</a></h3>
+                        <p>{{p.Descripcion}}</p>
                     </div>
                 </div>
                 {% endfor %}

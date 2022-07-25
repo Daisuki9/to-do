@@ -145,13 +145,13 @@ def Buscar(request):
         datos = request.POST
         if str(datos["Criterio"]) == "Tareas":
             tareas=Tarea.objects.filter(Q(Titulo__icontains=datos["TextoBusqueda"]) | Q(Contenido__icontains=datos["TextoBusqueda"]))
-            return render(request, "busquedatareas.html", {"tareas":tareas})
+            return render(request, "apptodo/busqueda_resultados_tareas.html", {"tareas":tareas})
         elif str(datos["Criterio"]) == "Proyectos":
             proyectos=Proyecto.objects.filter(Titulo__contains=datos["TextoBusqueda"])
-            return render(request, "busquedaproyectos.html", {"proyectos":proyectos})
+            return render(request, "apptodo/busqueda_resultados_proyectos.html", {"proyectos":proyectos})
 
     formularioVacio=BuscarProyectosYTareas()
-    return render(request, "buscar.html", {"form":formularioVacio})
+    return render(request, "apptodo/busqueda.html", {"form":formularioVacio})
 
 def Configuraciones(request):  
     estados=Estado.objects.all()    
