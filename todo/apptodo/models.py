@@ -1,7 +1,6 @@
 from django.db import models
 
 class Proyecto(models.Model):
-    Clave=models.CharField(max_length=10)
     Titulo=models.CharField(max_length=50)
     Descripcion=models.TextField(max_length=8000, default="")
     def __str__(self) -> str:

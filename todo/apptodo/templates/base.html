@@ -59,7 +59,7 @@
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
 					<li {% block resaltadoInicio %}{% endblock %}><a href="{% url 'inicio' %}">Inicio</a></li>
-					<li {% block resaltadoProyectos %}{% endblock %}><a href="{% url 'proyectos' %}">Proyectos</a></li>
+					<li {% block resaltadoProyectos %}{% endblock %}><a href="{% url 'proyecto_list' %}">Proyectos</a></li>
 					<li {% block resaltadoBuscar %}{% endblock %}><a href="{% url 'buscar' %}">Buscar</a></li>
 					<li {% block resaltadoConfiguraciones %}{% endblock %}><a href="{% url 'configuraciones' %}">Configuraciones</a></li>
 				</ul>
@@ -73,8 +73,12 @@
 	<script src="{% static 'js/jquery.min.js' %}"></script>
 	<!-- jQuery Easing -->
 	<script src="{% static 'js/jquery.easing.1.3.js' %}"></script>
+	<!-- Popper -->
+	<!-- <script src="{% static 'js/popper.min.js' %}"></script> -->
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
 	<!-- Bootstrap -->
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
 	<!-- Waypoints -->
 	<script src="{% static 'js/jquery.waypoints.min.js' %}"></script>
 	<!-- Flexslider -->

@@ -2,8 +2,8 @@ from django.contrib import admin
 from apptodo.models import *
 
 class ProyectoAdmin(admin.ModelAdmin):
-    list_display = ('Clave', 'Titulo', )
-    search_fields = ('Clave', 'Titulo', )
+    list_display = ('Titulo', 'Descripcion', )
+    search_fields = ('Titulo', 'Descripcion', )
 
 class EstadoAdmin(admin.ModelAdmin):
     list_display = ('Titulo',)

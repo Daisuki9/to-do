@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Proyectos{% endblock %}{% block subtitulo %} - {{claveProyectoSeleccionado}}{% endblock %}
+
+{% block resaltadoProyectos %}class="colorlib-active"{% endblock %}
+
+{% block contenido %}
+<div id="colorlib-main">
+    <div class="colorlib-about">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Confirmación</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <p>¿Seguro que desea borrar el proyecto: "{{ proyecto.Titulo }}"?</p>
+                        <button class="btn btn-danger" type="submit">Si</button>
+                        <button class="btn btn-warning" onclick="history.back()">No</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
