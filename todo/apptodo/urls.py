@@ -4,14 +4,9 @@ from .views import *
 
 urlpatterns = [
     path('', Inicio, name="inicio"),
-    path('buscar/', Buscar, name="buscar"),
+    path('login', login_request, name="login"),
     
-    # path('proyectos/', Proyectos_ver, name="proyectos"),
-    # path('proyectos/nuevo/', Proyectos_nuevo, name="proyectoNuevo"),
-    # path('proyectos/editar/<claveProyecto>', Proyectos_editar, name="proyectoEditar"),
-    # path('proyectos/detalles/<claveProyecto>/', Proyectos_ver_detalle, name="proyectos"),
-    # path('proyectos/detalles/<claveProyecto>/quitartarea/<idTarea>', Tarea_quitar, name="QuitarTarea"),
-    # path('proyectos/detalles/<claveProyecto>/editartarea/<idTarea>', Tarea_editar, name="EditarTarea"),
+    path('buscar/', Buscar, name="buscar"),
     
     #region Proyectos
     path('proyecto/list', ProyectoList.as_view(), name="proyecto_list"),

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Inicio de sesión{% endblock %}
+
+{% comment %}
+{% block resaltadoBuscar %}class="colorlib-active"{% endblock %}
+{% endcomment %}
+
+{% block contenido %}
+
+<div id="colorlib-main">
+    <div class="colorlib-contact">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Iniciar sesión</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-7 col-md-push-1">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInLeft">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary btn-send-message" value="Iniciar">
+                                </div> 
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

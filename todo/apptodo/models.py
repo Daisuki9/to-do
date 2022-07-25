@@ -15,7 +15,6 @@ class Estado(models.Model):
 class Tarea(models.Model):
     Titulo=models.CharField(max_length=50)
     Contenido=models.TextField(max_length=8000)
-    Completado=models.BooleanField()
     Estado=models.ForeignKey(Estado, on_delete=models.CASCADE)
     Proyecto=models.ForeignKey(Proyecto, on_delete=models.CASCADE)
     def __str__(self) -> str:

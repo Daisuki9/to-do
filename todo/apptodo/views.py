@@ -1,9 +1,16 @@
+from ssl import _PasswordType
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from .forms import *
+from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import *
 from .forms import *
@@ -11,47 +18,22 @@ from .forms import *
 def Inicio(request):
     return render(request, "index.html", {})
 
-#region Proyectos (viejo)
-# def Proyectos_ver(request):
-#     proyectos=Proyecto.objects.all()
-#     return render(request, "Proyectos_ver.html", {"proyectos":proyectos})
-
-# def Proyectos_ver_detalle(request, claveProyecto=''):
-#     if request.method == "POST":
-#         datos = request.POST
-#         estadoPorDefecto=Estado.objects.filter(PorDefecto=1)[0]
-#         proyectoSeleccionado=Proyecto.objects.filter(Clave=claveProyecto)[0]
-#         tarea = Tarea(Titulo=datos["Titulo"], Contenido=datos["Contenido"], Completado=0, Estado=estadoPorDefecto, Proyecto=proyectoSeleccionado)
-#         tarea.save()
-#     proyectos=Proyecto.objects.all()
-#     proyectoSeleccionado=Proyecto.objects.get(Clave=claveProyecto)
-#     tareas=Tarea.objects.filter(Proyecto__Clave=claveProyecto)
-#     formularioVacio=NuevaTarea()
-#     return render(request, "Proyectos_ver_detalle.html", {"proyectos":proyectos, "claveProyectoSeleccionado":claveProyecto, "tareas":tareas, "form":formularioVacio, "proyectoSeleccionado":proyectoSeleccionado})
-
-# def Proyectos_nuevo(request):
-#     if request.method == "POST":
-#         datos = request.POST
-#         clave=str(datos["Clave"]).replace(" ", "")
-#         proyecto=Proyecto(Titulo=datos["Titulo"], Clave=clave, Descripcion=datos["Descripcion"])
-#         proyecto.save()
-#         return redirect("proyectos")
-        
-#     formularioVacio=NuevoProyecto()
-#     return render(request, "Proyectos_guardar.html", {"form":formularioVacio})
-
-# def Proyectos_editar(request, claveProyecto):
-#     if request.method == "POST":
-#         datos = request.POST
-#         clave=str(datos["Clave"]).replace(" ", "")
-#         proyecto=Proyecto(Titulo=datos["Titulo"], Clave=clave, Descripcion=datos["Descripcion"])
-#         proyecto.save()
-#         return redirect("proyectos")
-#     proyecto=Proyecto.objects.get(Clave=claveProyecto)
-#     formularioVacio=NuevoProyecto(initial={"Clave":proyecto.Clave, "Titulo":proyecto.Titulo, "Descripcion":proyecto.Descripcion})
-#     return render(request, "Proyectos_guardar.html", {"form":formularioVacio})
-
-#endregion
+def login_request(request):
+    if request.method == "POST":
+        form=AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username=form.cleaned_data.get('username')
+            password=form.cleaned_data.get('password')
+            user=authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("inicio")
+            else:
+                return redirect("login")
+        else:
+            return redirect("login")
+    form=AuthenticationForm()
+    return render(request, "apptodo/login.html", {"form":form})
 
 #region Proyectos
 
@@ -85,19 +67,6 @@ class ProyectoUpdate(UpdateView):
 class ProyectoDelete(DeleteView):
     model=Proyecto
     success_url="/apptodo/proyecto/list"
-
-#endregion
-
-#region Tareas (viejo)
-
-# def Tarea_quitar(request, claveProyecto, idTarea):
-#     tarea = Tarea.objects.get(id=idTarea)
-#     tarea.delete()
-#     return redirect("proyectos", claveProyecto)
-
-# def Tarea_editar(request, claveProyecto, idTarea):
-    
-#     return redirect("proyectos", claveProyecto)
 
 #endregion
 
