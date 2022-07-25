@@ -63,7 +63,7 @@
 					<li {% block resaltadoProyectos %}{% endblock %}><a href="{% url 'proyecto_list' %}">Proyectos</a></li>
 					<li {% block resaltadoBuscar %}{% endblock %}><a href="{% url 'buscar' %}">Buscar</a></li>
 					<li {% block resaltadoConfiguraciones %}{% endblock %}><a href="{% url 'configuraciones' %}">Configuraciones</a></li>
-					<li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+					<li><a href="{% url 'logout' %}">Cerrar Sesión[{{user.username}}]</a></li>
 					{% endif %}
 				</ul>
 			</nav>
