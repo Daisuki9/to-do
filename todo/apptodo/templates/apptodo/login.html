@@ -25,7 +25,8 @@
                                 {% csrf_token %}
                                 {{ form.as_p }}
                                 <div class="form-group">
-                                    <input type="submit" class="btn btn-primary btn-send-message" value="Iniciar">
+                                    <input type="submit" class="btn btn-primary" value="Iniciar">
+                                    <a class="btn  btn-primary" href="{% url 'register' %}">Registrar</a>
                                 </div> 
                             </form>
                         </div>

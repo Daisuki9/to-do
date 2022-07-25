@@ -14,6 +14,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import *
 from .forms import *
 
+@login_required
 def Inicio(request):
     return render(request, "index.html", {})
 
@@ -62,11 +63,11 @@ def logout_request(request):
 
 #region Proyectos
 
-class ProyectoList(ListView):
+class ProyectoList(LoginRequiredMixin, ListView):
     model=Proyecto
     template_name="apptodo/proyecto_list.html"
 
-class ProyectoDetail(DetailView):
+class ProyectoDetail(LoginRequiredMixin, DetailView):
     model=Proyecto
     template_name="apptodo/proyecto_detail.html"
     
@@ -79,17 +80,17 @@ class ProyectoDetail(DetailView):
         context['extra'] = {"tareasDelProyecto":tareasDelProyecto, "form":formNuevaTarea, "estados":estados}
         return context
 
-class ProyectoCreate(CreateView):
+class ProyectoCreate(LoginRequiredMixin, CreateView):
     model=Proyecto
     success_url="/apptodo/proyecto/list"
     fields=["Titulo", "Descripcion"]
 
-class ProyectoUpdate(UpdateView):
+class ProyectoUpdate(LoginRequiredMixin, UpdateView):
     model=Proyecto
     success_url="/apptodo/proyecto/list"
     fields=["Titulo", "Descripcion"]
 
-class ProyectoDelete(DeleteView):
+class ProyectoDelete(LoginRequiredMixin, DeleteView):
     model=Proyecto
     success_url="/apptodo/proyecto/list"
 
@@ -97,6 +98,7 @@ class ProyectoDelete(DeleteView):
 
 #region Tareas
 
+@login_required
 def TareaCreate(request, idProyecto):
     if request.method == "POST":
         datos = request.POST
@@ -106,12 +108,14 @@ def TareaCreate(request, idProyecto):
         tarea.save()
     return redirect("proyecto_detail", idProyecto)
 
+@login_required
 def TareaDelete(request, idProyecto, idTarea):
     if request.method == "POST":
         tarea = Tarea.objects.get(id=idTarea)
         tarea.delete()
     return redirect("proyecto_detail", idProyecto)
 
+@login_required
 def TareaUpdate(request, idProyecto, idTarea):
     tarea = Tarea.objects.get(id=idTarea)
 
@@ -125,6 +129,7 @@ def TareaUpdate(request, idProyecto, idTarea):
     formularioVacio=TareaForm(initial={"Titulo":tarea.Titulo, "Contenido":tarea.Contenido})
     return render(request, "apptodo/tarea_update.html", {"form":formularioVacio})
 
+@login_required
 def TareaUpdateEstado(request, idProyecto, idTarea, idEstado):
     tarea=Tarea.objects.get(id=idTarea)
     estado=Estado.objects.get(id=idEstado)
@@ -134,6 +139,7 @@ def TareaUpdateEstado(request, idProyecto, idTarea, idEstado):
 
 #endregion
 
+@login_required
 def Buscar(request):
     if request.method == "POST":
         datos = request.POST
@@ -147,10 +153,12 @@ def Buscar(request):
     formularioVacio=BuscarProyectosYTareas()
     return render(request, "apptodo/busqueda.html", {"form":formularioVacio})
 
+@staff_member_required
 def Configuraciones(request):  
     estados=Estado.objects.all()    
     return render(request, "configuraciones.html", {"estados":estados})
 
+@staff_member_required
 def Configuraciones_estado_por_defecto(request, idEstado=''):
     estado = Estado.objects.get(PorDefecto=1)
     estado.PorDefecto=0
@@ -160,6 +168,7 @@ def Configuraciones_estado_por_defecto(request, idEstado=''):
     estado.save()
     return redirect("configuraciones")
 
+@staff_member_required
 def CrearEstados(request):
     if request.method == "POST":
         datos = request.POST

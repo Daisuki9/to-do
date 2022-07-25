@@ -12,10 +12,10 @@ urlpatterns = [
     
     #region Proyectos
     path('proyecto/list', ProyectoList.as_view(), name="proyecto_list"),
-    path(r'^(?P<pk>/d+)$', ProyectoDetail.as_view(), name="proyecto_detail"),
-    path(r'^nuevo$', ProyectoCreate.as_view(), name="proyecto_create"),
-    path(r'^editar/(?P<pk>/d+)$', ProyectoUpdate.as_view(), name="proyecto_update"),
-    path(r'^eliminar/(?P<pk>/d+)$', ProyectoDelete.as_view(), name="proyecto_delete"),
+    path('proyecto/<pk>', ProyectoDetail.as_view(), name="proyecto_detail"),
+    path('proyecto/nuevo', ProyectoCreate.as_view(), name="proyecto_create"),
+    path('proyecto/editar/<pk>', ProyectoUpdate.as_view(), name="proyecto_update"),
+    path('proyecto/eliminar/<pk>', ProyectoDelete.as_view(), name="proyecto_delete"),
     #endregion
     #region Tareas
     path('nuevaTarea/<idProyecto>', TareaCreate, name="tarea_create"),

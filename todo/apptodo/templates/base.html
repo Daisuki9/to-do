@@ -58,11 +58,13 @@
 			<h1 id="colorlib-logo"><a href="{% url 'inicio' %}">To-Do App</a></h1>
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					{% if user.is_authenticated %}
 					<li {% block resaltadoInicio %}{% endblock %}><a href="{% url 'inicio' %}">Inicio</a></li>
 					<li {% block resaltadoProyectos %}{% endblock %}><a href="{% url 'proyecto_list' %}">Proyectos</a></li>
 					<li {% block resaltadoBuscar %}{% endblock %}><a href="{% url 'buscar' %}">Buscar</a></li>
+					{% if user.is_authenticated %}
+					{% if user.is_staff %}
 					<li {% block resaltadoConfiguraciones %}{% endblock %}><a href="{% url 'configuraciones' %}">Configuraciones</a></li>
+					{% endif %}
 					<li><a href="{% url 'logout' %}">Cerrar Sesión[{{user.username}}]</a></li>
 					{% endif %}
 				</ul>
