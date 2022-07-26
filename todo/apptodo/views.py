@@ -156,9 +156,13 @@ def Buscar(request):
         datos = request.POST
         if str(datos["Criterio"]) == "Tareas":
             tareas=Tarea.objects.filter(Q(Titulo__icontains=datos["TextoBusqueda"]) | Q(Contenido__icontains=datos["TextoBusqueda"]))
+            if tareas.count() == 0:
+                return render(request, "apptodo/busqueda_resultados_vacio.html", {})
             return render(request, "apptodo/busqueda_resultados_tareas.html", {"tareas":tareas})
         elif str(datos["Criterio"]) == "Proyectos":
             proyectos=Proyecto.objects.filter(Titulo__contains=datos["TextoBusqueda"])
+            if proyectos.count() == 0:
+                return render(request, "apptodo/busqueda_resultados_vacio.html", {})
             return render(request, "apptodo/busqueda_resultados_proyectos.html", {"proyectos":proyectos})
 
     formularioVacio=BuscarProyectosYTareas()

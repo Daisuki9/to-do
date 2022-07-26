@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Buscar{% endblock %}
+
+{% block resaltadoBuscar %}class="colorlib-active"{% endblock %}
+
+{% block contenido %}
+<div id="colorlib-main">
+    <div class="colorlib-services">
+        <div class="colorlib-narrow-content">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
+                    <h2 class="colorlib-heading">Resultado</h2>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="colorlib-feature animate-box" data-animate-effect="fadeInRight">
+                    <div class="colorlib-text">
+                        <h3>No hay resultados que coincidan con los criterios de búsqueda</h3>
+                        <br>
+                        <a class="btn btn-warning btn-sm" href="{% url 'buscar' %}">Volver</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
