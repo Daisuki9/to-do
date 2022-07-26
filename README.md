@@ -11,40 +11,65 @@ Una simple App de lista de tareas escrito en python.
 
 ## Funcionalidades
 
-1. Agregar proyectos.
-1. Agregar tareas.
-1. Agregar estados.
+1. Administración de proyectos.
+1. Administración de tareas en cada proyecto.
+1. Configurar estados.
 1. Buscar proyectos (por título).
 1. Buscar tareas (por título y contenido).
+1. Gestión de usuarios
+
+## Iniciar sesión o registrarse
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/01-login.png)
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/02-registro.png)
 
 
 
 ## Proyectos
 
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/proyectos.png)
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/03-crear_primer_proyecto.png)
 
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/MenuNuevoProyecto.png)
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/04-crear_primer_proyecto_formulario.png)
 
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/formNuevoProyecto.png)
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/05-lista_proyectos.png)
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/06-detalle_proyecto.png)
 
 
 
 ## Tareas
 
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/menuNuevaTarea.png)
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/07-agregar_nueva_tarea.png)
 
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/08-detalle_proyecto_con_una_tarea.png)
 
-
-## Estados
-
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/menuEstados.png)
-
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/menuNuevoEstado.png)
-
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/formNuevoProyecto.png)
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/09-detalle_proyecto_con_una_tarea_cambio_de_estado.png)
 
 
 
 ## Búsqueda
 
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/formBusqueda.png)
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/10-busqueda_proyectos_o_tareas.png)
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/11-resultado_busqueda_tareas.png)
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/12-resultado_busqueda_proyectos.png)
+
+
+
+## Usuario
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/13-ediar_perfil.png)
+
+
+
+## Salir
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/14-salir.png)
+
+
+
+## Configuraciones
+
+![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/15-configuraciones_estados_solo_admin.png)
