@@ -14,9 +14,28 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import *
 from .forms import *
 
+class ResumenProyecto:
+    def __init__(self, idProyecto, tituloProyecto, completado):
+        self.idProyecto = idProyecto
+        self.tituloProyecto = tituloProyecto
+        self.completado = completado
+
 @login_required
 def Inicio(request):
-    return render(request, "index.html", {})
+    username=request.user
+    proyectos=Proyecto.objects.filter(Usuario=username)
+    categoriaListo=CategoriaEstado.objects.get(Nombre="Listo")
+    estadoCategoriaListo=Estado.objects.get(Categoria=categoriaListo)
+    resumen=[]
+    for p in proyectos:
+        tareasCompletas=Tarea.objects.filter(Proyecto=p).filter(Estado=estadoCategoriaListo)
+        tareasTotal=Tarea.objects.filter(Proyecto=p)
+        completado=0
+        if tareasCompletas.count() == tareasTotal.count():
+            completado=1
+        resumen.append(ResumenProyecto(p.id, p.Titulo, completado))
+
+    return render(request, "index.html", {"proyectos":proyectos, "resumen":resumen})
 
 #region Sesión
 

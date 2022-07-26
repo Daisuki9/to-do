@@ -9,27 +9,21 @@
     <div class="colorlib-about">
         <div class="colorlib-narrow-content">
             <div class="row row-bottom-padded-md">
-                <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+                <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
                     {% if user.is_authenticated %}
                     <div class="row padding">
-                        <div class="col-md-4 no-gutters animate-box" data-animate-effect="fadeInLeft">
-                            <a href="#" class="steps active">
+                        {% for r in resumen %}
+                        <div class="col-md-2 no-gutters animate-box" data-animate-effect="fadeInLeft">
+                            {% if r.completado == 1 %}
+                            <a href="{% url 'proyecto_detail' r.idProyecto %}" class="steps active">
+                            {% else %}
+                            <a href="{% url 'proyecto_detail' r.idProyecto %}" class="steps">
+                            {% endif %}
                                 <p class="icon"><span><i class="icon-check"></i></span></p>
-                                <h3>Mi primero proyecto</h3>
+                                <h3>{{r.tituloProyecto}}</h3>
                             </a>
                         </div>
-                        <div class="col-md-4 no-gutters animate-box" data-animate-effect="fadeInLeft">
-                            <a href="#" class="steps">
-                                <p class="icon"><span><i class="icon-check"></i></span></p>
-                                <h3>Proyecto 2</h3>
-                            </a>
-                        </div>
-                        <div class="col-md-4 no-gutters animate-box" data-animate-effect="fadeInLeft">
-                            <a href="#" class="steps">
-                                <p class="icon"><span><i class="icon-check"></i></span></p>
-                                <h3>Proyecto 3</h3>
-                            </a>
-                        </div>
+                        {% endfor %}
                     </div>
                     {% endif %}
                 </div>
