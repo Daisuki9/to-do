@@ -75,6 +75,11 @@
 					{% endif %}
 				</ul>
 			</nav>
+			<div class="colorlib-footer">
+				<ul>
+					<li {% block resaltadoAbout %}{% endblock %}><a href="{% url 'about' %}">Acerca de</a></li>
+				</ul>
+			</div>
 		</aside>
 		{% if user.is_authenticated %}
 		{% block contenido %}

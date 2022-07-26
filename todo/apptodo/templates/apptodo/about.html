@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}Acerca de TO-DO App{% endblock %}
+
+
+{% block contenido %}
+
+<div id="colorlib-main">
+
+    <div class="colorlib-about">
+        <div class="colorlib-narrow-content">
+            <div class="row row-bottom-padded-md">
+                <div class="col-md-6">
+                    <div class="about-img animate-box" data-animate-effect="fadeInLeft" style="background-image: url({{MEDIA_URL}}apptodo_about.png);">
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+                    <div class="about-desc">
+                        <h2 class="colorlib-heading">Acerca de TO-DO APP</h2>
+                        <p><b>Desarrollado por:</b> Daiana Zabaljauregui</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

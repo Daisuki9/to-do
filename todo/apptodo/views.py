@@ -164,6 +164,7 @@ def Buscar(request):
     formularioVacio=BuscarProyectosYTareas()
     return render(request, "apptodo/busqueda.html", {"form":formularioVacio})
 
+#region Configuraciones
 @staff_member_required
 def Configuraciones(request):  
     estados=Estado.objects.all()
@@ -195,3 +196,7 @@ def EstadoCreate(request):
         return redirect("configuraciones")
         
     return redirect("configuraciones")
+#endregion
+
+def About(request):
+    return render(request, "apptodo/about.html", {})
