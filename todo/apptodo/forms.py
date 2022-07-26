@@ -6,7 +6,7 @@ from .models import *
 
 class TareaForm(forms.Form):
     Titulo=forms.CharField(max_length=50, label=False, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título'}))
-    Contenido=forms.CharField(max_length=8000, label=False, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contenido'}))
+    Contenido=forms.CharField(max_length=8000, label=False, widget=forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contenido', 'rows':4, 'cols':15}))
 
 class NuevoEstado(forms.Form):
     categoriaEstado = ['Pendiente','En Curso', 'Listo']

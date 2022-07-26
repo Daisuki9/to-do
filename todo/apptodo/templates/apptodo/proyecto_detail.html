@@ -41,11 +41,16 @@
                                 {% endif %}
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-md-6">
+                                            <div class="form-floating col-md-6">
+                                                <textarea class="form-control" placeholder="Contenido" id="floatingTextarea" style="height: 150px; width: 230px; margin-bottom: 12px">{{tarea.Contenido}}</textarea>
+                                                <!-- <label for="floatingTextarea">Comments</label> -->
+                                              </div>
+                                            {% comment %}
+                                            <!-- <div class="col-md-6">
                                                 <p>{{tarea.Contenido}}</p>
-                                            </div>
+                                            </div> -->
+                                            {% endcomment %}
                                             <div class="col-md-6">
-                                                {% comment %}<!-- <small>Estado: {{tarea.Estado.Titulo}}</small> -->{% endcomment %}
                                                 <div class="dropdown">
                                                     <button class="btn btn-sm dropdown-toggle" type="button" id="dropdownEstado" data-bs-toggle="dropdown" aria-expanded="false">
                                                         Estado: {{tarea.Estado.Titulo}}
