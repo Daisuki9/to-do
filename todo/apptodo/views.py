@@ -14,6 +14,8 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .models import *
 from .forms import *
 
+#region Inicio
+
 class ResumenProyecto:
     def __init__(self, idProyecto, tituloProyecto, tareas):
         self.idProyecto = idProyecto
@@ -28,7 +30,6 @@ class ResumenProyecto:
             return True
         return False
 
-
 @login_required
 def Inicio(request):
     username=request.user
@@ -41,6 +42,7 @@ def Inicio(request):
         resumen.append(ResumenProyecto(p.id, p.Titulo, tareas))
 
     return render(request, "index.html", {"proyectos":proyectos, "resumen":resumen})
+#endregion
 
 #region Sesión
 
@@ -89,6 +91,8 @@ def PerfilUpdate(request):
         if form.is_valid():
             info=form.cleaned_data
             usuario.email = info["email"]
+            if info["password1"] != "":
+                usuario.set_password(info["password1"])
             usuario.save()
             return redirect('inicio')
     form=UsuarioEditarForm(initial={"username":usuario.username, "email":usuario.email})
@@ -187,6 +191,8 @@ def TareaUpdateEstado(request, idProyecto, idTarea, idEstado):
 
 #endregion
 
+#region Busqueda
+
 @login_required
 def Buscar(request):
     if request.method == "POST":
@@ -205,6 +211,8 @@ def Buscar(request):
 
     formularioVacio=BuscarProyectosYTareas()
     return render(request, "apptodo/busqueda.html", {"form":formularioVacio})
+
+#endregion
 
 #region Configuraciones
 @staff_member_required
