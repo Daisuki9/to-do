@@ -81,13 +81,8 @@
 				</ul>
 			</div>
 		</aside>
-		{% if user.is_authenticated %}
 		{% block contenido %}
 		{% endblock %}
-		{% else %}
-		{% block login %}
-		{% endblock %}
-		{% endif %}
 	</div>
 
 	<!-- jQuery -->
