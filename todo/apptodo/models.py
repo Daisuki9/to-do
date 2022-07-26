@@ -8,7 +8,7 @@ class Proyecto(models.Model):
 
     def __str__(self) -> str:
         return f"{self.Titulo}"
-
+    
 class CategoriaEstado(models.Model):
     Nombre=models.CharField(max_length=30)
     
