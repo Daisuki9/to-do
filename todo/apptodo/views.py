@@ -15,25 +15,30 @@ from .models import *
 from .forms import *
 
 class ResumenProyecto:
-    def __init__(self, idProyecto, tituloProyecto, completado):
+    def __init__(self, idProyecto, tituloProyecto, tareas):
         self.idProyecto = idProyecto
         self.tituloProyecto = tituloProyecto
-        self.completado = completado
+        self.tareasPendientes = tareas.filter(Estado__Categoria__Nombre="Pendiente").count()
+        self.tareasEnCurso = tareas.filter(Estado__Categoria__Nombre="En Curso").count()
+        self.tareasListas = tareas.filter(Estado__Categoria__Nombre="Listo").count()
+        self.tareasTotal = tareas.count()
+        self.tareas = tareas
+    def completado(self):
+        if self.tareasPendientes == 0 and self.tareasEnCurso == 0:
+            return True
+        return False
+
 
 @login_required
 def Inicio(request):
     username=request.user
     proyectos=Proyecto.objects.filter(Usuario=username)
-    categoriaListo=CategoriaEstado.objects.get(Nombre="Listo")
-    estadoCategoriaListo=Estado.objects.get(Categoria=categoriaListo)
     resumen=[]
+    if proyectos.count()==0:
+        return redirect("proyecto_list")
     for p in proyectos:
-        tareasCompletas=Tarea.objects.filter(Proyecto=p).filter(Estado=estadoCategoriaListo)
-        tareasTotal=Tarea.objects.filter(Proyecto=p)
-        completado=0
-        if tareasCompletas.count() == tareasTotal.count():
-            completado=1
-        resumen.append(ResumenProyecto(p.id, p.Titulo, completado))
+        tareas=Tarea.objects.filter(Proyecto=p)
+        resumen.append(ResumenProyecto(p.id, p.Titulo, tareas))
 
     return render(request, "index.html", {"proyectos":proyectos, "resumen":resumen})
 

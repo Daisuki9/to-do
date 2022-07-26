@@ -11,20 +11,28 @@
             <div class="row row-bottom-padded-md">
                 <div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
                     {% if user.is_authenticated %}
-                    <div class="row padding">
-                        {% for r in resumen %}
+                    {% for r in resumen %}
+                    <div class="row">
+                        <div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
+                            <h2 class="colorlib-text">{{r.tituloProyecto}}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for t in r.tareas %}
                         <div class="col-md-2 no-gutters animate-box" data-animate-effect="fadeInLeft">
-                            {% if r.completado == 1 %}
-                            <a href="{% url 'proyecto_detail' r.idProyecto %}" class="steps active">
+                            {% if t.Estado.Categoria.Nombre == "Listo" %}
+                            <div class="steps active">
                             {% else %}
-                            <a href="{% url 'proyecto_detail' r.idProyecto %}" class="steps">
+                            <div class="steps">
                             {% endif %}
                                 <p class="icon"><span><i class="icon-check"></i></span></p>
-                                <h3>{{r.tituloProyecto}}</h3>
-                            </a>
+                                <h3>{{t.Titulo}}</h3>
+                            </div>
                         </div>
                         {% endfor %}
                     </div>
+                    <br>
+                    {% endfor %}
                     {% endif %}
                 </div>
             </div>
