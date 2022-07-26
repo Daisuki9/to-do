@@ -7,7 +7,7 @@ Una simple App de lista de tareas escrito en python.
 1. `git clone https://github.com/Daisuki9/to-do.git`
 1. Cambiar a la ruta donde se descargó el proyecto: `cd to-do/todo`
 1. Ejecutar `python manage.py runserver`
-1. Abrir [localhost:8080](http://localhost:8080) en el navegador
+1. Abrir [localhost:8080](http://localhost:8080/apptodo) en el navegador
 
 ## Funcionalidades
 

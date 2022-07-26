@@ -17,8 +17,8 @@ urlpatterns = [
     #endregion
     #region Proyectos
     path('proyecto/list', ProyectoList.as_view(), name="proyecto_list"),
-    path('proyecto/<pk>', ProyectoDetail.as_view(), name="proyecto_detail"),
     path('proyecto/nuevo', ProyectoCreate.as_view(), name="proyecto_create"),
+    path('proyecto/<pk>', ProyectoDetail.as_view(), name="proyecto_detail"),
     path('proyecto/editar/<pk>', ProyectoUpdate.as_view(), name="proyecto_update"),
     path('proyecto/eliminar/<pk>', ProyectoDelete.as_view(), name="proyecto_delete"),
     #endregion
