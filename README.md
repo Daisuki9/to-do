@@ -33,8 +33,6 @@ Una simple App de lista de tareas escrito en python.
 
 ![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/menuNuevaTarea.png)
 
-![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/formNuevaTarea.png)
-
 
 
 ## Estados
