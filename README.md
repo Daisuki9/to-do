@@ -73,3 +73,10 @@ Una simple App de lista de tareas escrito en python.
 ## Configuraciones
 
 ![](https://github.com/Daisuki9/to-do/blob/master/todo/screenshots/15-configuraciones_estados_solo_admin.png)
+
+
+
+## Admin
+
+Usuario: admin
+Clave: 1q2w3e4r+
