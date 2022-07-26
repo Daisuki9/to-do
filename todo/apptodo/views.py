@@ -78,6 +78,9 @@ class ProyectoList(LoginRequiredMixin, ListView):
     model=Proyecto
     template_name="apptodo/proyecto_list.html"
 
+    def get_queryset(self):
+        return Proyecto.objects.filter(Usuario=self.request.user)
+
 class ProyectoDetail(LoginRequiredMixin, DetailView):
     model=Proyecto
     template_name="apptodo/proyecto_detail.html"
@@ -90,11 +93,18 @@ class ProyectoDetail(LoginRequiredMixin, DetailView):
         formNuevaTarea=TareaForm()
         context['extra'] = {"tareasDelProyecto":tareasDelProyecto, "form":formNuevaTarea, "estados":estados}
         return context
+    
+    def get_queryset(self):
+        return Proyecto.objects.filter(Usuario=self.request.user)
 
 class ProyectoCreate(LoginRequiredMixin, CreateView):
     model=Proyecto
     success_url="/apptodo/proyecto/list"
     fields=["Titulo", "Descripcion"]
+
+    def form_valid(self, form):
+        form.instance.Usuario = self.request.user
+        return super().form_valid(form)
 
 class ProyectoUpdate(LoginRequiredMixin, UpdateView):
     model=Proyecto
@@ -104,6 +114,9 @@ class ProyectoUpdate(LoginRequiredMixin, UpdateView):
 class ProyectoDelete(LoginRequiredMixin, DeleteView):
     model=Proyecto
     success_url="/apptodo/proyecto/list"
+
+    def get_queryset(self):
+        return Proyecto.objects.filter(Usuario=self.request.user)
 
 #endregion
 
@@ -154,13 +167,14 @@ def TareaUpdateEstado(request, idProyecto, idTarea, idEstado):
 def Buscar(request):
     if request.method == "POST":
         datos = request.POST
+        username=request.user
         if str(datos["Criterio"]) == "Tareas":
-            tareas=Tarea.objects.filter(Q(Titulo__icontains=datos["TextoBusqueda"]) | Q(Contenido__icontains=datos["TextoBusqueda"]))
+            tareas=Tarea.objects.filter(Q(Proyecto__Usuario=username), Q(Titulo__icontains=datos["TextoBusqueda"]) | Q(Contenido__icontains=datos["TextoBusqueda"]))
             if tareas.count() == 0:
                 return render(request, "apptodo/busqueda_resultados_vacio.html", {})
             return render(request, "apptodo/busqueda_resultados_tareas.html", {"tareas":tareas})
         elif str(datos["Criterio"]) == "Proyectos":
-            proyectos=Proyecto.objects.filter(Titulo__contains=datos["TextoBusqueda"])
+            proyectos=Proyecto.objects.filter(Usuario=username, Titulo__contains=datos["TextoBusqueda"])
             if proyectos.count() == 0:
                 return render(request, "apptodo/busqueda_resultados_vacio.html", {})
             return render(request, "apptodo/busqueda_resultados_proyectos.html", {"proyectos":proyectos})

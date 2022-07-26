@@ -1,8 +1,11 @@
 from django.db import models
+from django.conf import settings
 
 class Proyecto(models.Model):
     Titulo=models.CharField(max_length=50)
     Descripcion=models.TextField(max_length=8000, default="")
+    Usuario=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+
     def __str__(self) -> str:
         return f"{self.Titulo}"
 
