@@ -82,3 +82,9 @@ Usuario: admin
 
 Clave: 1q2w3e4r+
 
+
+## Algunos videos
+
+Registro de nuevo usuario:
+
+https://github.com/Daisuki9/to-do/blob/master/todo/videos/01-%20Registro.mp4
