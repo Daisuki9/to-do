@@ -85,6 +85,36 @@ Clave: 1q2w3e4r+
 
 ## Algunos videos
 
-Registro de nuevo usuario:
+01- Registro
 
-https://github.com/Daisuki9/to-do/blob/master/todo/videos/01-%20Registro.mp4
+https://user-images.githubusercontent.com/107519917/181344384-0971e975-f43e-41a1-92c7-a846416f528a.mp4
+
+
+
+
+02- Crear proyecto, editar proyecto, crear tarea, editar tarea, cambiar estado, ver resumen
+
+https://user-images.githubusercontent.com/107519917/181344436-fe5a0897-fea5-4663-9afd-04f4633a0752.mp4
+
+
+
+
+03- Resumen inicio, buscar tareas, buscar proyectos, acceder y navegar proyecto
+
+https://user-images.githubusercontent.com/107519917/181344487-9d661eb6-9138-4228-8e4f-051f893b4301.mp4
+
+
+
+
+04- Cambiar clave usuario y volver a iniciar sesión
+
+https://user-images.githubusercontent.com/107519917/181344526-aa02d8e5-94da-4006-8fcf-8313096d35bf.mp4
+
+
+
+
+05- Iniciar sesión admin, configurar un nuevo estado, crear proyecto, crear tarea, definir estado nuevo, ir al panel de administración, borrar usaurio daiana junto con todo lo que hizo
+
+https://user-images.githubusercontent.com/107519917/181344586-86794be5-36d7-4094-a50f-7fca1920ec46.mp4
+
+
